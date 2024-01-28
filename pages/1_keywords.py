@@ -33,3 +33,5 @@ else:
         st.write(key, value)
     if flag == 0:
         st.write("Empty Search")
+
+st.sidebar.text("Web Creator: Jialin Wang")
