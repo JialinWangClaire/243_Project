@@ -7,7 +7,7 @@ from collections import Counter
 
 e = 40 # lines to train
 books = load_data('goodreads_books_history_biography.json',head = e)
-
+#----------Frequency Comparison----------
 before = []
 after = []
 count = 0
@@ -41,7 +41,7 @@ plt.xlabel('Book index')
 plt.title('Number of words before and after nlp')
 plt.show()
 
-
+#----------Word Map----------
 word_counts = Counter(map)
 most_common_words = word_counts.most_common(10)
 print("Top 10 most common root words in the first 40 books:")
