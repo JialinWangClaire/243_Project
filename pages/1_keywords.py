@@ -15,7 +15,7 @@ with open('/Users/wangjialin/Desktop/BIGPro/243project/pythonProject/book_abs.pi
 
 # matching step
 word = st.text_input('Keyword')
-if word in EngStopWords:
+if word.lower() in EngStopWords:
     st.write("Invalid stopword search")
 else:
     ps = PorterStemmer()

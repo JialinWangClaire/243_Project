@@ -45,7 +45,7 @@ def book_processing(e, books, glove):
             v = np.zeros(50)
             count = 0
             for word in abstract.split():
-                if word in EngStopWords:
+                if word.lower() in EngStopWords or len(word) <= 2:
                     pass
                 else:
                     if word in list(glove.keys()):
