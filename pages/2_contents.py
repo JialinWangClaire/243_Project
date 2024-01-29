@@ -5,7 +5,7 @@ from itertools import islice
 
 st.set_page_config(layout="wide")
 st.title("Goodreads Book Recommendation System: contents recommendation")
-st.write("The second part is to find the book a specific customer will take interest in. We turn all the useful words in the book abstracts they read before into vectors and integrate vectors into a profile vector for each reader. Then we do the matching step, finding the closest distance between book vectors and profile vectors. If we type user ID on the website, the system will recommend several books he would like to read according to his reading history.")
+st.write("The second part is to find the book a specific customer will take interest in. We turn all the useful words in the book abstracts they read before with high ratings into vectors and integrate vectors into a profile vector for each reader, using glove. Then we do the matching step, finding the closest distance between book vectors and profile vectors. If we type user ID on the website, the system will recommend several books he would like to read according to his reading history.")
 
 #----------Reader Profile----------book profiles read before with high ratings aggregated
 with open('/Users/wangjialin/Desktop/BIGPro/243project/pythonProject/book_dic.pickle', 'rb') as f:
