@@ -1,8 +1,11 @@
-from data_processing import load_data, glove_processing, book_processing
+from data_processing import load_data, glove_processing
 import numpy as np
 from nltk.corpus import stopwords
 EngStopWords = set(stopwords.words('english'))
 import pickle
+from nltk.stem import PorterStemmer
+from wordcloud import WordCloud
+from matplotlib import pyplot as plt
 
 n = 500  # lines to read
 interaction = load_data('goodreads_interactions_history_biography.json', head=n)
@@ -33,8 +36,27 @@ for person in interaction_dic.keys():
             except:
                 abstracts[person] = []
 
+
+#----------Reader Profile Visualization----------
 # for each in abstracts.values():
 #     print(len(each))
+total = ''
+ps = PorterStemmer()
+for group in abstracts.values():
+    total = ''
+    for text in group:
+        for word in text.split():
+            if word.lower() in EngStopWords or len(word) <= 2:
+                pass
+            else:
+                rootWord = ps.stem(word)
+                total = total + rootWord + ' '
+    wordcloud = WordCloud(width=800, height=400, background_color="white").generate(total)
+    plt.figure(figsize=(10, 5))
+    plt.imshow(wordcloud, interpolation='bilinear')
+    plt.axis("off")
+    plt.show()
+
 
 # NLP-build person profile
 file = open('glove.6B.50d.txt', 'r')
