@@ -12,7 +12,8 @@ for each in interactions:
     except:
         interaction_count[each['book_id']] = [each['date_added'][-4:]]
 
-count_dict = {key: value.count('2017') for key, value in interaction_count.items()}
+
+count_dict = {key: len(set(value)) for key, value in interaction_count.items()}
 
 sorted_count_dict = dict(sorted(count_dict.items(), key=lambda x: x[1], reverse=True))
 top_1000_results = dict(list(sorted_count_dict.items())[:1000])
