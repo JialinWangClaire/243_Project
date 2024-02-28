@@ -10,13 +10,12 @@ df = pd.read_csv(csv_filename)
 # Set the 'book_id' column as the index
 df.set_index('book_id', inplace=True)
 
-# Order for the ARIMA model
-order = (1, 1, 1)  # You might need to adjust the order based on your data
-
 # Ignore warnings
 warnings.filterwarnings("ignore")
 
-# Iterate over each row in the DataFrame
+# Iterate over each row in the DataFrame with the best parameter
+order = (0, 1, 1)
+
 for book_id, sales_data in df.iterrows():
     sales_data = sales_data.dropna()
 
@@ -31,7 +30,6 @@ for book_id, sales_data in df.iterrows():
     predictions = fit_model.predict(start=len(sales_data), end=len(sales_data) + 1, typ='levels')
     df.loc[book_id, '2018'] = predictions.values[0]
 
-print(df)
 # pickle dump
 with open('prediction.pickle', 'wb') as handle:
     pickle.dump(df, handle, protocol=pickle.HIGHEST_PROTOCOL)

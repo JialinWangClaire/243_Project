@@ -13,7 +13,7 @@ st.sidebar.text("Web Creator: Jialin Wang")
 with open('/Users/wangjialin/Desktop/BIGPro/243project/pythonProject/prediction.pickle', 'rb') as f:
     predictions = pickle.load(f)
 predictions.index = predictions.index.astype(str)
-book_id = st.text_input('Book_id: example: 10964, 7445, 30555488')
+book_id = st.text_input('Book_id: example: 5544, 10988, 23202')
 
 if book_id == '':
     st.write("Empty Search")
