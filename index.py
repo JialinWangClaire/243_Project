@@ -11,4 +11,12 @@ st.write("Develop a book recommendation system using the Goodreads dataset in th
 image2 = Image.open("/Users/wangjialin/Desktop/BIGPro/243project/pythonProject/2432.png")
 st.image(image2, width=800)
 
+st.write("The best regression model we select to predict the total interaction count of a book is XGBoost.")
+image3 = Image.open("/Users/wangjialin/Desktop/BIGPro/243project/pythonProject/2434.png")
+st.image(image3, width=700)
+
+st.write("Three most important features are ratings_count, text_reviews_count and publisher_encoded based on the F score. We can pay much attention to these features when estimating the popularity of each book.")
+image4 = Image.open("/Users/wangjialin/Desktop/BIGPro/243project/pythonProject/2433.png")
+st.image(image4, width=700)
+
 st.sidebar.text("Web Creator: Jialin Wang")
