@@ -8,6 +8,7 @@ from mpl_toolkits.mplot3d import Axes3D  # Import for 3D plot
 st.set_page_config(layout="wide")
 st.title("Goodreads Book Recommendation System: contents recommendation")
 st.write("The second part is to find the book a specific customer will take interest in. We turn all the useful words in the book abstracts they read before with high ratings into vectors and integrate vectors into a profile vector for each reader, using glove. Then we do the matching step, finding the closest distance between book vectors and profile vectors. If we type user ID on the website, the system will recommend several books he would like to read according to his reading history.")
+st.write("Moreover, we add multi-objective optimization to our recommendation system. We not only provide books with high similarity with user profiles, but also ensure the recommendation quality by choosing books with a high average history rating.")
 
 #----------Reader Profile----------book profiles read before with high ratings aggregated
 with open('/Users/wangjialin/Desktop/BIGPro/243project/pythonProject/book_dic.pickle', 'rb') as f:
@@ -28,9 +29,10 @@ else:
     v.append(profile_vector)
     dic = {}
     for each in book_dic.values():
-        dic[each[0]] = [np.linalg.norm(profile_vector - each[1]), each[1]]
+        if float(each[2]) >= 3.5:
+            dic[each[0]] = [np.linalg.norm(profile_vector - each[1]), each[1]] # rating is larger than 3.5
 
-    new = dict(sorted(dic.items(), key=lambda item: item[1][0]))
+    new = dict(sorted(dic.items(), key=lambda item: item[1][0])) # high similarity, multi-objective optimization
     first_10_items = dict(islice(new.items(), 10))
     for key, value in first_10_items.items():
         st.write(key)

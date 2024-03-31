@@ -41,6 +41,7 @@ def book_processing(e, books, glove):
         abstract = books[each]['description']
         idnum = books[each]['book_id']
         title = books[each]['title']
+        rates = books[each]['average_rating']
         if abstract != '':
             v = np.zeros(50)
             count = 0
@@ -53,7 +54,7 @@ def book_processing(e, books, glove):
                         count += 1
             if count != 0:
                 v /= count
-                book_dic[idnum] = [title, v]
+                book_dic[idnum] = [title, v, rates]
         if abstract != '':
             book_abs[title] = {}
             ps = PorterStemmer()
