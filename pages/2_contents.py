@@ -14,7 +14,7 @@ with open('/Users/wangjialin/Desktop/BIGPro/243project/pythonProject/book_dic.pi
     book_dic = pickle.load(f)
 with open('/Users/wangjialin/Desktop/BIGPro/243project/pythonProject/profiles.pickle', 'rb') as f2:
     user_profile = pickle.load(f2)
-print(book_dic)
+# print(book_dic)
 # print(user_profile)
 
 # matching step
