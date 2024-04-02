@@ -20,7 +20,11 @@ with open('/Users/wangjialin/Desktop/BIGPro/243project/pythonProject/profiles.pi
 
 # matching step
 user = st.text_input('User_id: example 8842281e1d1347389f2ab93d60773d4d, 72fb0d0087d28c832f15776b0d936598, ab2923b738ea3082f5f3efcbbfacb218')
-st.write("Here are the 10 books recommended to you according to your reading history:")
+num = st.slider("How many books do you want?", 1, 20, 10)
+st.write()
+st.write("Here are the", num, "books recommended to you according to your reading history:")
+st.markdown("<p style='font-family: Arial; font-size: 18px; color: orange;'>Here is the recommended list for you!</p>", unsafe_allow_html=True)
+
 if user == '':
     st.write("Empty Search")
 else:
@@ -30,12 +34,12 @@ else:
     dic = {}
     for each in book_dic.values():
         if float(each[2]) >= 3.5:
-            dic[each[0]] = [np.linalg.norm(profile_vector - each[1]), each[1]] # rating is larger than 3.5
+            dic[each[0]] = [np.linalg.norm(profile_vector - each[1]), each[1], each[2]] # rating is larger than 3.5
 
     new = dict(sorted(dic.items(), key=lambda item: item[1][0])) # high similarity, multi-objective optimization
-    first_10_items = dict(islice(new.items(), 10))
-    for key, value in first_10_items.items():
-        st.write(key)
+    first_num_items = dict(islice(new.items(), num))
+    for key, value in first_num_items.items():
+        st.write(key,": ",value[2])
         v.append(value[1])
 
     # Visualization
