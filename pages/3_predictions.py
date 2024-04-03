@@ -9,6 +9,7 @@ st.title("Goodreads Book Recommendation System: sale predictions")
 st.write("The third part is to do future book sale predictions. Based on historical book sale statistics, we use linear or nonlinear regression to find the most important features contributing to the book popularity, and also use time series analysis to predict future sales. ")
 
 st.sidebar.text("Web Creator: Jialin Wang")
+st.sidebar.image("/Users/wangjialin/Desktop/BIGPro/243project/pythonProject/mcj038257400001.jpeg", use_column_width=True)
 
 
 with open('/Users/wangjialin/Desktop/BIGPro/243project/pythonProject/prediction.pickle', 'rb') as f:
@@ -55,4 +56,18 @@ try:
      st.pyplot(fig)
 except:
      st.write("Sorry, the book is not in record now.")
+
+add_selectbox = st.sidebar.selectbox(
+    "How would you like to be contacted?",
+    ("Email", "Home phone", "Mobile phone")
+)
+
+with st.form("my_form"):
+   slider_val = st.slider("How much would you rate our website?", 1,10,8)
+   feedback = st.text_input('Your suggestions')
+   # Every form must have a submit button.
+   submitted = st.form_submit_button("Submit")
+if submitted:
+       st.write("You rate", slider_val)
+print(slider_val, feedback)
 

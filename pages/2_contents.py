@@ -68,3 +68,17 @@ else:
     st.pyplot(fig)
 
 st.sidebar.text("Web Creator: Jialin Wang")
+st.sidebar.image("/Users/wangjialin/Desktop/BIGPro/243project/pythonProject/mcj038257400001.jpeg", use_column_width=True)
+add_selectbox = st.sidebar.selectbox(
+    "How would you like to be contacted?",
+    ("Email", "Home phone", "Mobile phone")
+)
+
+with st.form("my_form"):
+   slider_val = st.slider("How much would you rate our website?", 1,10,8)
+   feedback = st.text_input('Your suggestions')
+   # Every form must have a submit button.
+   submitted = st.form_submit_button("Submit")
+if submitted:
+       st.write("You rate", slider_val)
+print(slider_val, feedback)
