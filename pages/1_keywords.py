@@ -48,4 +48,4 @@ with st.form("my_form"):
    submitted = st.form_submit_button("Submit")
 if submitted:
        st.write("You rate", slider_val)
-print(slider_val, feedback)
+       print(slider_val, feedback)
