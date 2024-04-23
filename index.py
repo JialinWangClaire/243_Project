@@ -1,5 +1,7 @@
 import streamlit as st
 from PIL import Image
+import pickle
+import random
 
 st.set_page_config(page_title="index",layout="wide")
 st.title("Goodreads Book Recommendation System")
@@ -7,6 +9,14 @@ st.subheader("History & Biography")
 image = Image.open("/Users/wangjialin/Desktop/BIGPro/243project/pythonProject/history-and-biography-500px-1.png")
 st.image(image, width=600)
 st.write("Develop a book recommendation system using the Goodreads dataset in the interactive website format. We will employ natural language processing, regression methods, and basic front-end development technology.")
+
+st.subheader("Ten Books of Your Day")
+with open('/Users/wangjialin/Desktop/BIGPro/243project/pythonProject/book_dic.pickle', 'rb') as f:
+    book_dic = pickle.load(f)
+# Select 10 random keys
+random_keys = random.sample(book_dic.keys(), 10)
+for each in random_keys:
+    st.write(book_dic[each][0], '/Book ID: ', each, '/Book Rating: ', book_dic[each][-1])
 
 image2 = Image.open("/Users/wangjialin/Desktop/BIGPro/243project/pythonProject/2432.png")
 st.image(image2, width=800)
